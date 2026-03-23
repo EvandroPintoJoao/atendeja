@@ -26,16 +26,16 @@
     <nav class="flex-1 mt-4  border-2 border-white">
         <ul class="space-y-1">
             @foreach ($nav as $item)
-                <li>
+                <li class="mx-4 mt-3 border-1 border-white">
                     <a href="{{ $item['url'] }}"
-                        class="flex items-center px-6 py-3  transition-colors {{ $active === $item['route'] ? ' text-teal-700 font-semibold' : 'hover:bg-gray-100 text-gray-700' }}">
+                        class="flex items-center px-6 py-3  transition-colors {{ $active === $item['route'] ? ' text-teal-600 font-semibold' : 'hover:bg-gray-100 text-gray-700' }}">
                         <x-svg :name="$item['icon']"
-                            class="w-5 h-5 mr-3 {{ $active === $item['route'] ? 'text-green-900' : 'text-gray-400' }}" />
+                            class="w-5 h-5 mr-3 {{ $active === $item['route'] ? 'text-green-400' : 'text-gray-900' }}" />
                         <span>{{ $item['label'] }}</span>
                     </a>
                 </li>
             @endforeach
-            <li>
+            <li class="flex justify-center align-bottom borde-2 border-white bg-white m-4 mt-6 p-4  ">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"

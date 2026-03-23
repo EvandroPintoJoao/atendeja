@@ -17,7 +17,7 @@
 </head>
 
 
-<body class="font-sans text-gray-800 bg-gray-200">
+<body class="font-sans text-gray-800 bg-gray-500">
     <div class="flex min-h-screen">
         @auth
             @if (auth()->check())
