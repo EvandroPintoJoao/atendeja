@@ -9,6 +9,6 @@
     ];
     $classes = $colors[$type] ?? $colors['default'];
 @endphp
-<span {{ $attributes->merge(['class' => 'inline-block px-2 py-0.5 rounded-lg text-xs font-semibold '.$classes]) }}>
+<span {{ $attributes->merge(['class' => 'inline-block px-2 py-0.5  text-xs font-semibold '.$classes]) }}>
     {{ $slot }}
 </span>

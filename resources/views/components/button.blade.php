@@ -5,7 +5,7 @@
 ])
 
 @php
-    $base = 'inline-flex items-center justify-center px-4 py-2 rounded-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+    $base = 'inline-flex items-center justify-center px-4 py-2   transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
     $types = [
         'primary' => 'bg-teal-600 text-white hover:bg-teal-700 focus:ring-teal-300',
         'secondary' => 'bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-gray-300',
