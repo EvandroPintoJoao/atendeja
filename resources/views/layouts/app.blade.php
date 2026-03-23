@@ -8,6 +8,12 @@
     <title>@yield("title")</title>
 </head>
 <body>
+    @if(session('success'))
+        <x-flash type="success" :message="session('success')" />
+    @endif
+    @if(session('error'))
+        <x-flash type="error" :message="session('error')" />
+    @endif
     @yield("content")
 </body>
 </html>
