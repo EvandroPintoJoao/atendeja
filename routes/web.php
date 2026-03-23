@@ -1,36 +1,44 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PacienteController;
-use App\Http\Controllers\FilaController;
 use App\Http\Controllers\AtendimentoController;
-use App\Http\Controllers\AuthConstroller;
-use App\Http\Controllers\ServicoController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfiguracaoController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FilaController;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\ServicoController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 // Página de boas-vindas (apenas para não autenticados)
 Route::get('/', function () {
     return view('welcome.index');
 })->name('welcome');
 
-
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+    return view('welcome.index');
+})->name('welcome');
 
 // Autenticação
-Route::get('/login', [AuthConstroller::class, 'index'])->name('login');
-Route::post('/login', [AuthConstroller::class, 'login'])->name('login.attempt');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
 
-Route::get('/register', [AuthConstroller::class, 'create'])->name('register');
-Route::post('/register', [AuthConstroller::class, 'store'])->name('register.attempt');
+Route::get('/register', [AuthController::class, 'create'])->name('register');
+Route::post('/register', [AuthController::class, 'store'])->name('register.attempt');
 
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect()->route('login');
-})->name('logout');
+Route::middleware('auth')->group(function () {
+    // Rotas protegidas por autenticação
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/admin', [AdminDashboardController::class, 'index'])->name('dashboard.admin');
+
+    
+    Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
+});
 
 // QR Code para fila
 Route::get('/fila/qrcode', function () {

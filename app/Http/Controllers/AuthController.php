@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 
-class AuthConstroller extends Controller
+class AuthController extends Controller
 {
 
     public function index(): View
@@ -70,7 +70,7 @@ class AuthConstroller extends Controller
             Auth::login($user);
         }
 
-        return redirect()->route('login')->with('success', 'Usuário registrado com sucesso!');
+        return redirect()->route('/')->with('success', 'Usuário registrado com sucesso!');
     }
 
     public function logout(Request $request)

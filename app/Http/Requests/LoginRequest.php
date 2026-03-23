@@ -24,7 +24,16 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
-            'remember' => ['boolean'],
+            'remember' => ['nullable', 'boolean'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' =>  "Informe o email",
+            'email.string' =>  "Email inválido",
+            'password.requerid' =>  "informe a password"
         ];
     }
 }
