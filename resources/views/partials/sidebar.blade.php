@@ -19,11 +19,11 @@
     ];
 @endphp
 <aside class="w-64 border-r flex flex-col min-h-screen fixed z-30 shadow-2xl bg-gray-00">
-    <div class="h-16 flex items-center px-6 font- text-2xl text-green-400 tracking-tight">
+    <div class="h-16 flex items-center px-6 font- text-2xl text-green-400 tracking-tight border-2 border-white">
         <x-svg name="logo" class="w-8 h-8 mr-2" />
         <span class="font-bold">AtendeJá</span>
     </div>
-    <nav class="flex-1 mt-4">
+    <nav class="flex-1 mt-4  border-2 border-white">
         <ul class="space-y-1">
             @foreach ($nav as $item)
                 <li>

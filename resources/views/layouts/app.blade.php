@@ -7,11 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="{{ asset('asses/js/tailwindcss.js') }}"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
     <title>@yield('title')</title>
 </head>
 
 
-<body class="font-sans text-gray-800">
+<body class="font-sans text-gray-800 bg-gray-200">
     <div class="flex min-h-screen">
         @auth
             @if (auth()->check())
@@ -21,7 +27,10 @@
                     @include('partials.navbar')
             @endif
         @endauth
-        <main class="flex-1 p-6">
+        <main class="flex-1  @auth
+@if (auth()->check())
+               p-6  border-2 border-white
+            @endif @endauth">
             @if (session('success'))
                 <x-flash type="success" :message="session('success')" />
             @endif
