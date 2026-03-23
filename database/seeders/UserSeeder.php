@@ -15,30 +15,19 @@ class UserSeeder extends Seeder
     {
         $usuarios = [
             [
-                "name" => "Emauel Benjamim Pinto Coelho",
-                "email" => "emanuel@email.com",
-                "password" => "1234" 
-            ],
-            [
-                "name" => "Cheila Benjamim Pinto Coelho",
-                "email" => "cheila@email.com",
-                "password" => "1234" 
-            ],
-            [
-                "name" => "Mateus Benjamim Pinto Coelho",
-                "email" => "mateus@email.com",
-                "password" => "1234" 
-            ],
-            [
-                "name" => "Araújo Benjamim Pinto Coelho",
-                "email" => "araujo@email.com",
-                "password" => "1234" 
+                "name" => "Adminstrador atende já",
+                "email" => "admin@atendeja.com",
+                "password" => "password",
+                "role" => "admin"
             ]
         ];
 
 
-     foreach ($usuarios as $usuario) {
-        User::firstOrCreate($usuario);
-     }
+        foreach ($usuarios as $usuario) {
+            if (User::where('email', $usuario['email'])->exists()) {
+                continue; // Pula para o próximo usuário se o email já existir
+            }
+            User::firstOrCreate($usuario);
+        }
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\FilaController;
 use App\Http\Controllers\AtendimentoController;
+use App\Http\Controllers\AuthConstroller;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\ConfiguracaoController;
 use Illuminate\Support\Facades\Auth;
@@ -19,19 +21,11 @@ Route::get('/', function () {
 
 
 // Autenticação
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-Route::post('/login', function (Request $request) {
-    // Lógica de autenticação
-})->name('login.attempt');
+Route::get('/login', [AuthConstroller::class, 'index'])->name('login');
+Route::post('/login', [AuthConstroller::class, 'login'])->name('login.attempt');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-Route::post('/register', function (Request $request) {
-    // Lógica de registro
-})->name('register.attempt');
+Route::get('/register', [AuthConstroller::class, 'create'])->name('register');
+Route::post('/register', [AuthConstroller::class, 'store'])->name('register.attempt');
 
 Route::post('/logout', function () {
     Auth::logout();
@@ -49,6 +43,7 @@ Route::post('/fila/qrcode/ler', function (Request $request) {
 
 // Dashboard (autenticado)
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/admin', [AdminDashboardController::class, 'index'])->name('dashboard.admin');
 
 // Pacientes
 Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes.index');

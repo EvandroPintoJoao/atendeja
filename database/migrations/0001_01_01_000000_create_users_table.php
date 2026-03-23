@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('role')->default('user'); // 'admin', 'user', 'funcionario'
+            $table->string('avatar')->nullable(); //vamos usar um emoji como avatar padrão, mas o usuário pode escolher um personalizado
+            $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

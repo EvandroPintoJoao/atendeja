@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <script src="{{ asset('asses/js/tailwindcss.js') }}"></script>
     <title>@yield('title')</title>
 </head>
 
@@ -35,7 +36,6 @@
         @endif
     @endauth
     </div>
-    <script src="https://cdn.tailwindcss.com"></script>
 </body>
 
 </html>
