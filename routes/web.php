@@ -8,11 +8,44 @@ use App\Http\Controllers\FilaController;
 use App\Http\Controllers\AtendimentoController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\ConfiguracaoController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 // Página de boas-vindas (apenas para não autenticados)
 Route::get('/', function () {
     return view('welcome.index');
 })->name('welcome');
+
+
+
+// Autenticação
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+Route::post('/login', function (Request $request) {
+    // Lógica de autenticação
+})->name('login.attempt');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+Route::post('/register', function (Request $request) {
+    // Lógica de registro
+})->name('register.attempt');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect()->route('login');
+})->name('logout');
+
+// QR Code para fila
+Route::get('/fila/qrcode', function () {
+    return view('fila.qrcode');
+})->name('fila.qrcode');
+Route::post('/fila/qrcode/ler', function (Request $request) {
+    // Lógica para ler QR e obter número da fila
+    return response()->json(['numero' => 'A123']);
+})->name('fila.qrcode.ler');
 
 // Dashboard (autenticado)
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
